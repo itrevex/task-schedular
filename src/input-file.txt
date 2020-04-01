@@ -1,0 +1,4 @@
+read bible; 5
+update github; 20
+remove pip unwanted installs; 20
+remove google cloud functions bug; 30

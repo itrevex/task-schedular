@@ -23,22 +23,25 @@ class Schedule:
 
     def schedule_items(self):
         items = self.get_items()
-        now = datetime.now()
+        start_time = datetime.now()
         scheduled = get_file_path(f"schedule.txt")
+        scheduled_items = []
         f = open(scheduled, "a+")
-        f.write(f"\n{now.strftime('%d/%m/%Y')} Schedule")
+        f.write(f"\n{start_time.strftime('%d/%m/%Y')} Schedule")
         for item in items:
-            now = now + timedelta(minutes=TIME_LAG_BTN_TASKS_IN_MINS)
-            f.write(
-                f"\n{now.astimezone(timezone('Africa/Kampala')).strftime('%H:%M')}\t{item['Name']}\t{item['Duration']}m"
+            start_time = start_time + timedelta(minutes=TIME_LAG_BTN_TASKS_IN_MINS)
+            end_time = start_time + timedelta(minutes=item["Duration"])
+            text = (
+                f"\n{start_time.astimezone(timezone('Africa/Kampala')).strftime('%H:%M')} to "
+                f"{end_time.astimezone(timezone('Africa/Kampala')).strftime('%H:%M')}"
+                f" {item['Name']} {int(item['Duration'])} m"
             )
-            now = now + timedelta(minutes=item["Duration"])
+            f.write(text)
+            start_time = start_time + timedelta(minutes=item["Duration"])
+            scheduled_items.append(text)
         f.write("\n")
         f.close()
+        return scheduled_items
 
     def sort_items(self, items):
         return sorted(items, key=lambda item: item["Duration"])
-
-
-if __name__ == "__main__":
-    Schedule().schedule_items()

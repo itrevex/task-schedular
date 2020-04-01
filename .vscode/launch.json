@@ -10,6 +10,20 @@
       "request": "launch",
       "program": "${file}",
       "console": "externalTerminal"
+    },
+    {
+      "name": "Python: Create Schedule",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/src/schedule.py",
+      "console": "externalTerminal"
+    },
+    {
+      "name": "Python: Functions tests",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceRoot}/src/test-funcs.py",
+      "console": "externalTerminal"
     }
   ]
 }
