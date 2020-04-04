@@ -23,5 +23,30 @@
 07:52 to 07:57 read bible 5 m; 07:55
 08:02 to 08:22 update github 20 m; 08:14
 08:27 to 08:47 remove pip unwanted installs 20 m; 08:19
-08:52 to 09:22 remove google cloud functions bug 30 m
+08:52 to 09:22 remove google cloud functions bug 30 m; 10:20
 
+
+01/04/2020 Schedule
+10:39 to 10:59 create scripts 20 m
+11:04 to 11:34 setup s3 bucket 30 m
+11:39 to 12:09 move projet to RDS 30 m
+12:14 to 13:44 format data based on Kebron's submission 90 m
+
+01/04/2020 Schedule
+21:05 to 21:35 click shop list item to open shop 30 m
+21:40 to 22:10 create new project 30 m
+
+02/04/2020 Schedule
+08:09 to 08:14 read bible 5 m; 8:10
+08:19 to 08:29 read messages 10 m; 8:50
+08:34 to 08:44 test google cloud function inside postman 10 m; 09:05
+08:49 to 09:09 look ng grid documentation 20 m
+09:14 to 09:34 read through jao project spec 20 m
+09:39 to 10:09 fix issue with Elia API 30 m; 12:30
+10:14 to 10:44 Set up track app filtered data 30 m
+10:49 to 11:19 implement rescheduling after delay 30 m
+11:24 to 13:24 Do a card on trackapp 120 m
+
+03/04/2020 Schedule
+07:11 to 07:16 read bible 5 m
+07:21 to 11:21 moh_corona android 240 m

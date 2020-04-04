@@ -37,7 +37,7 @@ class Schedule:
         scheduled = get_file_path(f"schedule.txt")
         f = open(scheduled, "a+")
         f.write(f"\n{datetime.now().strftime('%d/%m/%Y')} Schedule")
-        f.write(schedule)
+        f.write("".join(x for x in schedule))
         f.write("\n")
         f.close()
 

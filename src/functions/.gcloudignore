@@ -12,6 +12,9 @@
 # below:
 .git
 .gitignore
+schedule.txt
+input-file.txt
+test-funcs.py
 
 node_modules
 #!include:.gitignore
