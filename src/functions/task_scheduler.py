@@ -1,6 +1,6 @@
 from pytz import timezone
 from datetime import datetime, timedelta
-from utils import get_file_path
+from .utils import get_file_path
 
 TIME_LAG_BTN_TASKS_IN_MINS = 5
 LUNCH_TIME = "13:30"
@@ -67,10 +67,19 @@ class Schedule:
         scheduled_items = []
         for item in items:
             start_time = start_time + timedelta(minutes=TIME_LAG_BTN_TASKS_IN_MINS)
+            start_time = self.get_top_hour_start_time(start_time)
             text, start_time = self.get_item_schedule(start_time, item, _timezone)
             scheduled_items.append(text)
 
         return scheduled_items
+
+    def get_top_hour_start_time(self, start_time):
+        minutes = start_time.minute
+        additional_minutes = 5 - (minutes % 5)
+        # this means we got a modulus of zero and no need to add extra minutes
+        if additional_minutes != 5:
+            start_time = start_time + timedelta(minutes=additional_minutes)
+        return start_time
 
     def sort_items(self, items):
         """
