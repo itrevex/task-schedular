@@ -1,6 +1,7 @@
 from pytz import timezone
 from datetime import datetime, timedelta
-from .utils import get_file_path
+from utils.files import get_file_path
+
 
 TIME_LAG_BTN_TASKS_IN_MINS = 5
 LUNCH_TIME = "13:30"

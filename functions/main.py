@@ -1,5 +1,5 @@
 import os
-from cloud_scheduler import CloudScheduler
+from scheduler.cloud_scheduler import CloudScheduler
 
 python_env = os.getenv("PYTHON_ENV", "production")
 debug_env = python_env == "development"

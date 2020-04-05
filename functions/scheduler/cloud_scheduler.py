@@ -1,4 +1,4 @@
-from task_scheduler import Schedule
+from .task_scheduler import Schedule
 
 
 class CloudScheduler(Schedule):
@@ -6,4 +6,4 @@ class CloudScheduler(Schedule):
         self.request = data
 
     def get_items(self):
-        return self.request
+        return self.request["tasks"]

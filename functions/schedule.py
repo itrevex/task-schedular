@@ -1,4 +1,4 @@
-from task_scheduler import Schedule
+from scheduler.task_scheduler import Schedule
 
 if __name__ == "__main__":
     scheduler = Schedule()
