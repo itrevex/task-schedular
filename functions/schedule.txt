@@ -68,3 +68,38 @@
 13:50 to 14:22 more task 32 m
 14:30 to 15:13 other task 43 m
 15:20 to 19:20 moh_corona android 240 m
+
+06/04/2020 Schedule
+09:05 to 09:10 read bible 5 m
+09:15 to 09:35 look at the Ben's requests 20 m
+09:40 to 11:40 get configuration data 120 m
+11:45 to 14:45 put data point into db 180 m
+
+07/04/2020 Schedule
+10:45 to 10:50 read bible 5 m; 10:43
+10:55 to 11:05 read through emails 10 m; 10:48
+11:10 to 11:20 do typing practise 10 m; 11:00
+11:25 to 11:35 pay bills, nwsc, umeme, laptop 10 m; 11:20
+11:40 to 12:10 do qa on config data 30 m; 12:02
+12:15 to 12:45 download config ids 30 m; 13:03
+12:50 to 13:50 write params for ngg data 60 m; 
+13:55 to 14:55 write sample data locally 60 m
+
+08/04/2020 Schedule
+10:55 to 11:00 read bible 5 m; 
+11:05 to 11:20 do typing practice 15 m; 11:40
+11:25 to 13:25 go through numida ticket 120 m
+13:30 to 15:30 fix error with sql data 120 m
+
+09/04/2020 Schedule
+11:15 to 11:20 read bible 5 m; 11:12
+11:25 to 11:40 do typing practice 15 m; 11: 53
+11:45 to 12:15 check onyx issue 30 m; 12:09
+12:20 to 14:20 fix issue with data types 120 m
+
+13/04/2020 Schedule
+09:10 to 09:15 read bible 5 m
+09:20 to 09:35 do typing practice 15 m
+09:40 to 10:10 check date parsing issue 30 m
+10:15 to 12:15 finish flutter course 120 m
+12:20 to 12:50 do flutter stories 30 m

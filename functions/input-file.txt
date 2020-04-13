@@ -1,4 +1,6 @@
 read bible; 5
-moh_corona android; 240
-other task; 43
-more task; 32
+do typing practice; 15
+check date parsing issue; 30
+finish flutter course; 120;  1 
+do flutter stories; 30; 2
+

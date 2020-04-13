@@ -1,6 +1,7 @@
 from pytz import timezone
 from datetime import datetime, timedelta
 from utils.files import get_file_path
+import re
 
 
 TIME_LAG_BTN_TASKS_IN_MINS = 5
@@ -22,13 +23,22 @@ class Schedule:
         items = None
         with open(file_path, "r") as f:
             lines = f.readlines()
-            items = [self.get_dict(x) for x in lines]
+            items = [self.get_dict(x) for x in lines if x.strip("\n") != ""]
 
         return items
 
     def get_dict(self, item):
         values = item.split(";")
-        return {"Name": values[0].strip(), "Duration": float(values[1].strip())}
+        priority = 0
+        try:
+            priority = values[2].strip()
+        except IndexError:
+            pass
+        return {
+            "Name": values[0].strip(),
+            "Duration": float(values[1].strip()),
+            "Priority": int(priority),
+        }
 
     def write_schedule(self, schedule):
         """
@@ -86,5 +96,56 @@ class Schedule:
         """
         items(list(dict)): items contains a dict of items have both "Name" and "Duration"
         Sorts items based on their on their duration in ascending order
+
+        Logic
+        Sort item based on top priority, get sorted sort list and resort items that have similar 
+        priority level for the already sorted priority and resort them and plack them back into list
         """
-        return sorted(items, key=lambda item: item["Duration"])
+
+        priority_sort = sorted(items, key=lambda item: item["Priority"])
+        duration_sort = self.get_second_degree_sort(
+            priority_sort, "Priority", "Duration"
+        )
+        return duration_sort
+
+    def get_second_degree_sort(self, items, sorted_key, required_sort):
+        second_degree_sort = []
+        similar_items = [items[0]]
+        for i in range(len(items)):
+            if i == 0:
+                continue
+            if self.is_equal_to_previous(items, sorted_key, i):
+                similar_items.append(items[i])
+            else:
+                second_degree_sort.extend(
+                    sorted(similar_items, key=lambda item: item[required_sort])
+                )
+                similar_items = [items[i]]
+
+            if i == len(items) - 1:
+                # this is the last item, sort whatever is in the similar items list and move on
+                second_degree_sort.extend(
+                    sorted(similar_items, key=lambda item: item[required_sort])
+                )
+        return second_degree_sort
+
+    def is_equal_to_previous(self, items, key, i):
+        prev_item = items[i - 1][key]
+        current_item = items[i][key]
+        return prev_item == current_item
+
+    def get_last_task_index(self, lines):
+        """
+        Get last line index after being passed lines from a read file
+        """
+        last_index = None
+        for i, line in enumerate(lines):
+            if re.search("schedule$", str(line).lower()):
+                last_index = i
+        return last_index
+
+    def get_task_object(self, lines, last_schedule_index):
+        pass
+
+    def get_name_from_task_string(self, line):
+        return re.search(r"m", line).group(1)
