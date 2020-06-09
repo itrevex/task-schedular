@@ -1,15 +1,14 @@
 from pytz import timezone
 from datetime import datetime, timedelta
 from utils.files import get_file_path
-import re
-
+from .common import Common
 
 TIME_LAG_BTN_TASKS_IN_MINS = 5
 LUNCH_TIME = "13:30"
 LUNCH_BREAK_IN_MINUTES = 45
 
 
-class Schedule:
+class Schedule(Common):
     def get_items(self):
         """
         Returns a list of dicts with name and duration.
@@ -37,7 +36,7 @@ class Schedule:
         return {
             "Name": values[0].strip(),
             "Duration": float(values[1].strip()),
-            "Priority": int(priority),
+            "Priority": int(priority if priority != "" else 0),
         }
 
     def write_schedule(self, schedule):
@@ -63,8 +62,8 @@ class Schedule:
         end_time = start_time + timedelta(minutes=int(item["Duration"]))
         text = (
             f"\n{start_time.astimezone(timezone(_timezone)).strftime('%H:%M')} to "
-            f"{end_time.astimezone(timezone(_timezone)).strftime('%H:%M')}"
-            f" {item['Name']} {int(item['Duration'])} m"
+            f"{end_time.astimezone(timezone(_timezone)).strftime('%H:%M')};"
+            f" {item['Name']}; {int(item['Duration'])} m;"
         )
         return text, end_time
 
@@ -83,14 +82,6 @@ class Schedule:
             scheduled_items.append(text)
 
         return scheduled_items
-
-    def get_top_hour_start_time(self, start_time):
-        minutes = start_time.minute
-        additional_minutes = 5 - (minutes % 5)
-        # this means we got a modulus of zero and no need to add extra minutes
-        if additional_minutes != 5:
-            start_time = start_time + timedelta(minutes=additional_minutes)
-        return start_time
 
     def sort_items(self, items):
         """
@@ -134,18 +125,5 @@ class Schedule:
         current_item = items[i][key]
         return prev_item == current_item
 
-    def get_last_task_index(self, lines):
-        """
-        Get last line index after being passed lines from a read file
-        """
-        last_index = None
-        for i, line in enumerate(lines):
-            if re.search("schedule$", str(line).lower()):
-                last_index = i
-        return last_index
-
     def get_task_object(self, lines, last_schedule_index):
         pass
-
-    def get_name_from_task_string(self, line):
-        return re.search(r"m", line).group(1)
